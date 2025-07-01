@@ -1,3 +1,6 @@
+/* Los import siempre arriba */
+@import url('https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 @font-face {
     font-family: monogram;
     src: url(../fuentes/MONOGRAM\ LEAVES.otf);
@@ -9,13 +12,92 @@
     font-size: 100%;
     text-decoration: none;
     box-sizing: border-box; /* para no sumar el padding ni borde al width */
+    font-weight: normal;
 }
 :root {
     --colorPrincipal: rgb(49, 97, 50);
     --colorSecundario: rgb(198, 200, 198);
 }
+body {
+    font-family: sansation, sans-serif;
+    background-color: var(--colorSecundario);
+    /* Para que no quede muy ancha en pantallas 4k o similares */
+    max-width: 1200px;
+    margin: auto;
+}
 
 header {
-    font-family: monogram, fantasy;
-    font-size: calc(1rem + 4vw);
+    h1{
+        font-family: monogram, fantasy;
+        font-size: calc(1rem + 4vw);
+        color:var(--colorPrincipal);
+        text-align: center;
+    }
+    nav {
+        display: flex;
+        gap: 3px;
+        a {
+            flex-grow: 1; /* para que crezcan ocupando el espacio sobrante */
+            background-color: var(--colorPrincipal);
+            color:white;
+            padding: .5rem;
+            /* Al estar dentro de un flex, podemos usar text-align: center
+            con elementos en línea */
+            text-align: center;
+        }
+    }
+}
+main {
+    padding: 1rem; /* para que no quede pegado el contenido a los
+    bordes en pantallas pequeñas */
+}
+.restaurante h2 {
+    margin-top: 1rem;
+    text-align: center;
+    /* con clamp podemos poner (mínimo, preferido, máximo) */
+    font-size: clamp(1.6rem, calc(1rem + 1vw), 2rem);
+    color: var(--colorPrincipal);
+    /* El & ya que queremos que afecte al propio h2.
+    Sin el &, sería como poner h2 ::before */
+    &::before {
+        content: "-";
+    }
+    &::after {
+        content: "-";
+    }
+}
+.restaurante p {
+    text-align: center;
+    font-size: 1.2rem;
+    /* interlineado */
+    line-height: 1.6rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--colorPrincipal);
+    border-right: 4px solid var(--colorPrincipal);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.restaurante div {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    /* Para que bajen de fila si no hay sitio */
+    flex-wrap: wrap;
+
+    img {
+        width: 100%; /* la hacemos responsiva */
+        max-width: 500px; /* ya que son muy grandes */
+        clip-path: polygon(2% 0%, 98% 0%, 100% 2%, 100% 98%, 98% 100%, 2% 100%, 0% 98%, 0% 2%);
+    }
+}
+
+footer {
+    background-color: var(--colorPrincipal);
+    text-align: end;
+    /* la etiqueta address suele poner el texto en cursiva, pero así 
+    nos aseguramos */
+    font-style: italic;
+    color:white;
+    
 }
